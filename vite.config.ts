@@ -194,6 +194,11 @@ function generateSeoPages(): Plugin {
         </div>
       </section>
 
+      <figure class="plugin-preview">
+        <div><img src="/images/plugin-settings.webp" width="1600" height="670" alt="hpb Image Optimization settings for automatic WebP and AVIF conversion in WordPress" /></div>
+        <figcaption>Choose the output format and quality once. New JPEG and PNG uploads are converted automatically.</figcaption>
+      </figure>
+
       <section id="how-it-works" class="plugin-section" aria-labelledby="plugin-how-title">
         <div class="plugin-section-intro"><h2 id="plugin-how-title">Set it once. Keep uploading normally.</h2><p>The plugin fits into the Media Library workflow you already use. There is no separate dashboard, credit system, or remote processing queue.</p></div>
         <ol class="plugin-list">

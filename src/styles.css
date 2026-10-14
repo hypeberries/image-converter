@@ -272,6 +272,10 @@ input[type="number"] { padding: 0 13px; }
 .plugin-actions .plugin-primary:hover { background: var(--accent-dark); }
 .plugin-actions .plugin-secondary { color: var(--ink); background: transparent; border: 1px solid rgba(23,19,31,.2); }
 .plugin-actions .plugin-secondary:hover { border-color: var(--accent); color: var(--accent-dark); }
+.plugin-preview { margin: 46px 0 76px; }
+.plugin-preview > div { overflow: hidden; padding: 10px; background: #eeecec; border: 1px solid var(--line); border-radius: 14px; box-shadow: var(--shadow); }
+.plugin-preview img { display: block; width: 100%; height: auto; border-radius: 8px; }
+.plugin-preview figcaption { margin: 13px 4px 0; color: var(--muted); font-size: 12px; line-height: 1.55; }
 .plugin-facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; margin: 0 0 76px; overflow: hidden; background: var(--line); border: 1px solid var(--line); border-radius: 11px; }
 .plugin-facts article { padding: 28px; background: var(--paper); }
 .plugin-facts h2 { margin: 0; font-size: 15px; }
@@ -349,6 +353,9 @@ footer { padding: 26px 0 36px; color: var(--muted); border-top: 1px solid var(--
   .plugin-main { width: calc(100% - 24px); }
   .plugin-hero { padding: 42px 4px; }
   .plugin-hero h1 { font-size: clamp(42px, 13vw, 62px); }
+  .plugin-preview { margin: 28px 0 52px; }
+  .plugin-preview > div { padding: 5px; border-radius: 10px; }
+  .plugin-preview img { border-radius: 6px; }
   .plugin-facts { margin-bottom: 52px; }
   .plugin-section, .plugin-faq { padding: 48px 4px; }
   .footer-inner { width: calc(100% - 32px); gap: 24px; }
