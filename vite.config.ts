@@ -107,7 +107,8 @@ function generateSeoPages(): Plugin {
     <meta name="robots" content="index, follow" />
     <meta name="theme-color" content="#f8f5f1" />
     <link rel="canonical" href="https://convert.hypeberries.com/privacy/" />
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon.png" type="image/png" />
+    <link rel="apple-touch-icon" href="/favicon.png" />
     <link rel="stylesheet" crossorigin href="${cssHref}" />
     <title>Privacy · Hypeberries Image Converter</title>
   </head>
