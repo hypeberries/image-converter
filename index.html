@@ -15,6 +15,8 @@
     <meta property="og:url" content="https://convert.hypeberries.com/" />
     <meta property="og:image" content="https://convert.hypeberries.com/images/logo.png" />
     <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Free WebP & AVIF Image Converter · Hypeberries" />
+    <meta name="twitter:description" content="Resize and convert images privately in your browser. No uploads, accounts or server-side processing." />
     <title>Free WebP &amp; AVIF Image Converter · Hypeberries</title>
     <script type="application/ld+json">
       {
@@ -26,6 +28,7 @@
         "applicationCategory": "MultimediaApplication",
         "operatingSystem": "Any",
         "browserRequirements": "Requires a modern browser with WebAssembly support",
+        "isAccessibleForFree": true,
         "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
         "featureList": [
           "WebP and AVIF output",
@@ -39,11 +42,79 @@
   </head>
   <body>
     <div id="app">
+      <header class="site-header">
+        <div class="header-inner">
+          <a class="brand" href="/" aria-label="Hypeberries Image Converter home"><img src="/images/logo.png" alt="Hypeberries" width="208" height="52" /></a>
+          <nav aria-label="Page navigation"><a href="#how-it-works">How it works</a><a href="#guide">Format guide</a><a href="#privacy">Privacy</a></nav>
+        </div>
+      </header>
       <main>
-        <h1>Free WebP and AVIF image converter</h1>
-        <p>Convert and resize images privately in your browser. Your files are not uploaded.</p>
-        <noscript>This converter requires JavaScript and WebAssembly to process images locally.</noscript>
+        <section class="hero" aria-labelledby="page-title">
+          <h1 id="page-title">Convert images to WebP or AVIF</h1>
+          <p>Private, browser-based conversion. Nothing is uploaded.</p>
+        </section>
+
+        <section class="workspace" aria-label="Image converter">
+          <div class="panel files-panel"><div class="step-heading"><span>01</span><div><h2>Add images</h2><p>JPEG, PNG, WebP or AVIF · 30 MB maximum</p></div></div><noscript><p>This converter requires JavaScript and WebAssembly to process images locally.</p></noscript></div>
+          <div class="panel options-panel"><div class="step-heading"><span>02</span><div><h2>Choose output</h2><p>WebP or AVIF, with quality and resize controls</p></div></div></div>
+        </section>
+
+        <section id="how-it-works" class="how-it-works" aria-labelledby="how-title">
+          <div class="section-intro"><h2 id="how-title">Three steps, no upload queue.</h2><p>The converter runs locally in your browser. There is no account, server upload, or waiting for a remote job to finish.</p></div>
+          <ol class="how-steps">
+            <li><span>01</span><div><strong>Choose your images</strong><p>Add one file or a batch of JPEG, PNG, WebP, or AVIF images up to 30 MB each.</p></div></li>
+            <li><span>02</span><div><strong>Set the output</strong><p>Choose WebP or AVIF, adjust quality, and use extra controls when you need resizing or lossless WebP.</p></div></li>
+            <li><span>03</span><div><strong>Download the result</strong><p>Save images individually or download the completed batch together as a ZIP file.</p></div></li>
+          </ol>
+        </section>
+
+        <section class="conversion-context" aria-labelledby="conversion-context-title">
+          <div><h2 id="conversion-context-title">A private image converter for everyday web work.</h2></div>
+          <div class="conversion-copy">
+            <p>Convert JPEG, PNG, WebP, and AVIF files without sending the originals to a remote service. The browser performs the entire conversion locally, including resizing, orientation, compression, and metadata removal.</p>
+            <p>The same settings can be applied to a batch of images, with individual downloads or one ZIP at the end. WebP is a dependable everyday choice; AVIF is useful when achieving the smallest practical file matters more than encoding speed.</p>
+          </div>
+        </section>
+
+        <section class="benefits" aria-label="Converter features">
+          <article><h3>Local by design</h3><p>Your files remain on your device. The browser handles decoding, resizing, and encoding.</p></article>
+          <article><h3>Batch friendly</h3><p>Process several images with the same settings and collect the finished files in one ZIP.</p></article>
+          <article><h3>Useful controls</h3><p>Balance quality and file size, resize proportionally, or use lossless WebP for pixel-perfect output.</p></article>
+        </section>
+
+        <section id="guide" class="guide" aria-labelledby="guide-title">
+          <div class="guide-intro"><h2 id="guide-title">Which format should you choose?</h2><p>For most websites, WebP at 90% is a dependable default. Try AVIF when the smallest possible file matters and you can spend a little longer encoding it.</p></div>
+          <dl class="format-notes">
+            <div><dt>WebP</dt><dd>Fast to create, broadly useful, and a good choice for everyday website images.</dd></div>
+            <div><dt>AVIF</dt><dd>Often produces smaller files, especially for photographs, but takes longer to encode.</dd></div>
+            <div><dt>Quality</dt><dd>Start at 90%. Lower it when file size matters more; raise it for detailed artwork or text.</dd></div>
+          </dl>
+        </section>
+
+        <section id="privacy" class="privacy-note" aria-labelledby="privacy-title">
+          <div><h2 id="privacy-title">Your images stay on your device.</h2></div>
+          <div><p>The converter has no image upload endpoint. Your browser decodes, resizes and encodes each file locally. Standard host request logs never contain your image files or conversion settings.</p><a href="mailto:fenda@hypeberries.com?subject=Image%20Converter%20feedback">Send feedback</a></div>
+        </section>
+
+        <section class="faq" aria-labelledby="faq-title">
+          <div class="section-intro"><h2 id="faq-title">Image conversion questions</h2><p>Practical answers about quality, privacy, supported files, and browser-based conversion.</p></div>
+          <div class="faq-list">
+            <details><summary>Do my images leave my device?</summary><p>No. The image data is decoded and converted inside your browser. The website has no image upload endpoint.</p></details>
+            <details><summary>Which image formats can I convert?</summary><p>You can add JPEG, PNG, WebP, and AVIF files and export them as WebP or AVIF. Each source image can be up to 30 MB.</p></details>
+            <details><summary>Should I choose WebP or AVIF?</summary><p>WebP is a dependable default with fast encoding and broad support. AVIF often creates smaller files, especially for photographs, but takes longer to encode.</p></details>
+            <details><summary>What quality setting should I use?</summary><p>Start at 90% for general website use. Lower it when file size matters more, or raise it for screenshots, text, and detailed artwork.</p></details>
+            <details><summary>Will transparent backgrounds be preserved?</summary><p>Yes. WebP and AVIF both support transparency, so transparent areas in compatible source files can remain transparent.</p></details>
+            <details><summary>What happens to EXIF and location metadata?</summary><p>The converter applies the source orientation and creates a new output without copying EXIF, location data, comments, or other source metadata.</p></details>
+          </div>
+        </section>
+
+        <section class="popular-conversions" aria-labelledby="popular-title">
+          <h2 id="popular-title">Popular image conversions</h2>
+          <nav aria-label="Popular image conversions"><a href="/png-to-webp/">PNG to WebP</a><a href="/jpg-to-webp/">JPG to WebP</a><a href="/png-to-avif/">PNG to AVIF</a><a href="/jpg-to-avif/">JPG to AVIF</a></nav>
+        </section>
       </main>
+
+      <footer><div class="footer-inner"><div class="footer-brand"><img src="/images/logo.png" alt="Hypeberries" width="208" height="52" /><p>Free tools made for the web.</p></div><nav class="footer-links" aria-label="Footer navigation"><a href="/">Converter</a><a href="#how-it-works">How it works</a><a href="#guide">Format guide</a><a href="/privacy/">Privacy</a><a href="https://widgets.hypeberries.com/">Widgets</a><a href="https://github.com/hypeberries">GitHub</a></nav><p>Independent tools by Hypeberries.<br />Made for a calmer web.</p></div></footer>
     </div>
     <script type="module" src="/src/main.ts"></script>
   </body>

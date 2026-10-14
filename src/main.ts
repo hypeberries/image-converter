@@ -33,9 +33,21 @@ interface WorkerResponse {
   error?: string;
 }
 
+interface PageConfig {
+  title: string;
+  description: string;
+  canonical: string;
+  heroTitle: string;
+  heroDescription: string;
+  contextTitle: string;
+  contextParagraphs: string[];
+  output: Format;
+}
+
 const MAX_FILE_SIZE = 30 * 1024 * 1024;
 const MAX_PIXELS = 60_000_000;
 const ACCEPTED_TYPES = new Set(['image/jpeg', 'image/png', 'image/webp', 'image/avif']);
+const pageConfig = getPageConfig(window.location.pathname);
 
 function renderIcon(definition: IconDefinition): string {
   return icon(definition, {
@@ -46,7 +58,7 @@ function renderIcon(definition: IconDefinition): string {
 
 const state = {
   items: [] as ImageItem[],
-  format: 'webp' as Format,
+  format: pageConfig.output,
   quality: 90,
   effort: 'balanced' as Effort,
   resizeMode: 'original' as ResizeMode,
@@ -67,6 +79,7 @@ app.innerHTML = `
         <img src="/images/logo.png" alt="Hypeberries" width="208" height="52">
       </a>
       <nav aria-label="Page navigation">
+        <a href="#how-it-works">How it works</a>
         <a href="#guide">Format guide</a>
         <a href="#privacy">Privacy</a>
       </nav>
@@ -75,8 +88,8 @@ app.innerHTML = `
 
   <main>
     <section class="hero" aria-labelledby="page-title">
-      <h1 id="page-title">Convert images to WebP or AVIF</h1>
-      <p>Private, browser-based conversion. Nothing is uploaded.</p>
+      <h1 id="page-title">${pageConfig.heroTitle}</h1>
+      <p>${pageConfig.heroDescription}</p>
     </section>
 
     <section class="workspace" aria-label="Image converter">
@@ -116,8 +129,8 @@ app.innerHTML = `
         <fieldset class="control-group">
           <legend>Format</legend>
           <div class="format-toggle">
-            <label><input type="radio" name="format" value="webp" checked><span>WebP<small>Great all-rounder</small></span></label>
-            <label><input type="radio" name="format" value="avif"><span>AVIF<small>Smallest files</small></span></label>
+            <label><input type="radio" name="format" value="webp" ${pageConfig.output === 'webp' ? 'checked' : ''}><span>WebP<small>Great all-rounder</small></span></label>
+            <label><input type="radio" name="format" value="avif" ${pageConfig.output === 'avif' ? 'checked' : ''}><span>AVIF<small>Smallest files</small></span></label>
           </div>
         </fieldset>
 
@@ -209,6 +222,33 @@ app.innerHTML = `
       <div id="results" class="results"></div>
     </section>
 
+    <section id="how-it-works" class="how-it-works" aria-labelledby="how-title">
+      <div class="section-intro">
+        <h2 id="how-title">Three steps, no upload queue.</h2>
+        <p>The converter runs locally in your browser. There is no account, server upload, or waiting for a remote job to finish.</p>
+      </div>
+      <ol class="how-steps">
+        <li><span>01</span><div><strong>Choose your images</strong><p>Add one file or a batch of JPEG, PNG, WebP, or AVIF images up to 30 MB each.</p></div></li>
+        <li><span>02</span><div><strong>Set the output</strong><p>Choose WebP or AVIF, adjust quality, and open More options when you need resizing or lossless WebP.</p></div></li>
+        <li><span>03</span><div><strong>Download the result</strong><p>Save images individually or download the completed batch together as a ZIP file.</p></div></li>
+      </ol>
+    </section>
+
+    <section class="conversion-context" aria-labelledby="conversion-context-title">
+      <div>
+        <h2 id="conversion-context-title">${pageConfig.contextTitle}</h2>
+      </div>
+      <div class="conversion-copy">
+        ${pageConfig.contextParagraphs.map((paragraph) => `<p>${paragraph}</p>`).join('')}
+      </div>
+    </section>
+
+    <section class="benefits" aria-label="Converter features">
+      <article><h3>Local by design</h3><p>Your files remain on your device. The browser handles decoding, resizing, and encoding.</p></article>
+      <article><h3>Batch friendly</h3><p>Process several images with the same settings and collect the finished files in one ZIP.</p></article>
+      <article><h3>Useful controls</h3><p>Balance quality and file size, resize proportionally, or use lossless WebP for pixel-perfect output.</p></article>
+    </section>
+
     <section id="guide" class="guide" aria-labelledby="guide-title">
       <div class="guide-intro">
         <h2 id="guide-title">Which format should you choose?</h2>
@@ -230,6 +270,31 @@ app.innerHTML = `
         <a href="mailto:fenda@hypeberries.com?subject=Image%20Converter%20feedback">Send feedback</a>
       </div>
     </section>
+
+    <section class="faq" aria-labelledby="faq-title">
+      <div class="section-intro">
+        <h2 id="faq-title">Image conversion questions</h2>
+        <p>Practical answers about quality, privacy, supported files, and browser-based conversion.</p>
+      </div>
+      <div class="faq-list">
+        <details><summary>Do my images leave my device?</summary><p>No. The image data is decoded and converted inside your browser. The website has no image upload endpoint.</p></details>
+        <details><summary>Which image formats can I convert?</summary><p>You can add JPEG, PNG, WebP, and AVIF files and export them as WebP or AVIF. Each source image can be up to 30 MB.</p></details>
+        <details><summary>Should I choose WebP or AVIF?</summary><p>WebP is a dependable default with fast encoding and broad support. AVIF often creates smaller files, especially for photographs, but takes longer to encode.</p></details>
+        <details><summary>What quality setting should I use?</summary><p>Start at 90% for general website use. Lower it when file size matters more, or raise it for screenshots, text, and detailed artwork.</p></details>
+        <details><summary>Will transparent backgrounds be preserved?</summary><p>Yes. WebP and AVIF both support transparency, so transparent areas in PNG, WebP, or AVIF source files can remain transparent.</p></details>
+        <details><summary>What happens to EXIF and location metadata?</summary><p>The converter applies the source orientation and creates a new output without copying EXIF, location data, comments, or other source metadata.</p></details>
+      </div>
+    </section>
+
+    <section class="popular-conversions" aria-labelledby="popular-title">
+      <h2 id="popular-title">Popular image conversions</h2>
+      <nav aria-label="Popular image conversions">
+        <a href="/png-to-webp/">PNG to WebP</a>
+        <a href="/jpg-to-webp/">JPG to WebP</a>
+        <a href="/png-to-avif/">PNG to AVIF</a>
+        <a href="/jpg-to-avif/">JPG to AVIF</a>
+      </nav>
+    </section>
   </main>
 
   <footer>
@@ -240,8 +305,9 @@ app.innerHTML = `
       </div>
       <nav class="footer-links" aria-label="Footer navigation">
         <a href="/">Converter</a>
+        <a href="#how-it-works">How it works</a>
         <a href="#guide">Format guide</a>
-        <a href="#privacy">Privacy</a>
+        <a href="/privacy/">Privacy</a>
         <a href="https://widgets.hypeberries.com/">Widgets</a>
         <a href="https://github.com/hypeberries" target="_blank" rel="noreferrer">GitHub</a>
       </nav>
@@ -275,6 +341,13 @@ const results = getElement<HTMLDivElement>('results');
 const resultsSummary = getElement<HTMLParagraphElement>('results-summary');
 const downloadAllButton = getElement<HTMLButtonElement>('download-all');
 const toast = getElement<HTMLDivElement>('toast');
+
+applyPageMetadata(pageConfig);
+if (window.location.hash) {
+  window.addEventListener('load', () => {
+    document.querySelector(window.location.hash)?.scrollIntoView({ block: 'start' });
+  }, { once: true });
+}
 
 let toastTimer = 0;
 
@@ -311,20 +384,11 @@ queue.addEventListener('click', (event) => {
 
 document.querySelectorAll<HTMLInputElement>('input[name="format"]').forEach((input) => {
   input.addEventListener('change', () => {
-    state.format = input.value as Format;
-    state.lossless = false;
-    losslessInput.checked = false;
-    qualityInput.disabled = false;
-    document.querySelector('.quality-group')?.classList.remove('is-disabled');
-    const isWebp = state.format === 'webp';
-    losslessInput.disabled = !isWebp;
-    losslessRow.classList.toggle('is-disabled', !isWebp);
-    losslessRow.querySelector('small')!.textContent = isWebp
-      ? 'Preserve every pixel; the file may be larger'
-      : 'Lossless mode is available for WebP output';
-    invalidateResults();
+    setFormat(input.value as Format);
   });
 });
+
+setFormat(pageConfig.output);
 
 qualityInput.addEventListener('input', () => {
   state.quality = Number(qualityInput.value);
@@ -378,6 +442,120 @@ results.addEventListener('click', (event) => {
 
 window.addEventListener('beforeunload', releaseUrls);
 updateQualityTrack();
+
+function getPageConfig(pathname: string): PageConfig {
+  const pages: Record<string, PageConfig> = {
+    '/png-to-webp/': {
+      title: 'PNG to WebP Converter — Free & Private · Hypeberries',
+      description: 'Convert PNG images to WebP for free in your browser. Preserve transparency, resize files, adjust quality, and download batches without uploading.',
+      canonical: 'https://convert.hypeberries.com/png-to-webp/',
+      heroTitle: 'Convert PNG to WebP',
+      heroDescription: 'Private PNG-to-WebP conversion in your browser. Nothing is uploaded.',
+      contextTitle: 'Why convert PNG images to WebP?',
+      contextParagraphs: [
+        'PNG is ideal for screenshots, logos, interface graphics, and images that need transparency, but detailed PNG files can become large. WebP keeps transparency while offering both lossy and lossless compression, making it a practical alternative for many websites.',
+        'Start at 90% quality for a smaller file with a close visual match. For crisp graphics where every pixel matters, open More options and enable lossless WebP. The original PNG stays untouched on your device.',
+      ],
+      output: 'webp',
+    },
+    '/jpg-to-webp/': {
+      title: 'JPG to WebP Converter — Free & Private · Hypeberries',
+      description: 'Convert JPG and JPEG photos to WebP for free in your browser. Adjust quality, resize images, and batch download without uploading your files.',
+      canonical: 'https://convert.hypeberries.com/jpg-to-webp/',
+      heroTitle: 'Convert JPG to WebP',
+      heroDescription: 'Private JPG-to-WebP conversion in your browser. Nothing is uploaded.',
+      contextTitle: 'A practical WebP upgrade for JPEG photos.',
+      contextParagraphs: [
+        'JPEG remains useful and widely compatible, but WebP can often reduce the size of photographic website images while keeping a similar appearance. Smaller images can reduce transfer size and help pages feel faster, especially on mobile connections.',
+        'Quality between 85% and 90% is a useful starting range for photographs. You can also resize oversized camera images before conversion. Orientation is applied automatically, while EXIF and location metadata are not copied into the WebP output.',
+      ],
+      output: 'webp',
+    },
+    '/png-to-avif/': {
+      title: 'PNG to AVIF Converter — Free & Private · Hypeberries',
+      description: 'Convert PNG images to AVIF for free in your browser. Preserve transparency, control quality, resize files, and download without uploading.',
+      canonical: 'https://convert.hypeberries.com/png-to-avif/',
+      heroTitle: 'Convert PNG to AVIF',
+      heroDescription: 'Private PNG-to-AVIF conversion in your browser. Nothing is uploaded.',
+      contextTitle: 'Use AVIF when a smaller modern image matters.',
+      contextParagraphs: [
+        'AVIF supports transparency and can create compact files from detailed PNG images. It is especially useful when a PNG contains photographic detail, gradients, or many colors rather than simple flat artwork.',
+        'AVIF takes longer to encode than WebP, so large batches may need a little patience. Start around 90% quality, inspect the downloaded result, and lower the setting when reducing file size is more important than preserving very fine detail.',
+      ],
+      output: 'avif',
+    },
+    '/jpg-to-avif/': {
+      title: 'JPG to AVIF Converter — Free & Private · Hypeberries',
+      description: 'Convert JPG and JPEG photos to AVIF for free in your browser. Resize and batch-convert images locally with no uploads or account.',
+      canonical: 'https://convert.hypeberries.com/jpg-to-avif/',
+      heroTitle: 'Convert JPG to AVIF',
+      heroDescription: 'Private JPG-to-AVIF conversion in your browser. Nothing is uploaded.',
+      contextTitle: 'Make photographic images smaller with AVIF.',
+      contextParagraphs: [
+        'AVIF is designed for efficient modern image compression and is often a strong choice for photographs, large hero images, and other detailed website visuals. It may produce a smaller result than WebP at a comparable visual quality.',
+        'Encoding AVIF is more computationally intensive, but the work stays on your device. Use the resize controls for oversized camera files, begin near 90% quality, and compare the finished file before replacing an existing website asset.',
+      ],
+      output: 'avif',
+    },
+  };
+
+  return pages[pathname] ?? {
+    title: 'Free WebP & AVIF Image Converter · Hypeberries',
+    description: 'Convert JPEG, PNG, WebP and AVIF images to WebP or AVIF for free. Resize and compress files privately in your browser—nothing is uploaded.',
+    canonical: 'https://convert.hypeberries.com/',
+    heroTitle: 'Convert images to WebP or AVIF',
+    heroDescription: 'Private, browser-based conversion. Nothing is uploaded.',
+    contextTitle: 'A private image converter for everyday web work.',
+    contextParagraphs: [
+      'Convert JPEG, PNG, WebP, and AVIF files without sending the originals to a remote service. The browser performs the entire conversion locally, including resizing, orientation, compression, and metadata removal.',
+      'The same settings can be applied to a batch of images, with individual downloads or one ZIP at the end. WebP is a dependable everyday choice; AVIF is useful when achieving the smallest practical file matters more than encoding speed.',
+    ],
+    output: 'webp',
+  };
+}
+
+function applyPageMetadata(config: PageConfig): void {
+  document.title = config.title;
+  setMeta('meta[name="description"]', 'content', config.description);
+  setMeta('link[rel="canonical"]', 'href', config.canonical);
+  setMeta('meta[property="og:title"]', 'content', config.title);
+  setMeta('meta[property="og:description"]', 'content', config.description);
+  setMeta('meta[property="og:url"]', 'content', config.canonical);
+
+  const schema = document.querySelector<HTMLScriptElement>('script[type="application/ld+json"]');
+  if (!schema?.textContent) return;
+  try {
+    const data = JSON.parse(schema.textContent) as Record<string, unknown>;
+    data.name = config.heroTitle;
+    data.url = config.canonical;
+    data.description = config.description;
+    schema.textContent = JSON.stringify(data);
+  } catch {
+    // The static schema remains usable if a browser extension alters the script.
+  }
+}
+
+function setMeta(selector: string, attribute: string, value: string): void {
+  document.querySelector(selector)?.setAttribute(attribute, value);
+}
+
+function setFormat(format: Format): void {
+  state.format = format;
+  document.querySelectorAll<HTMLInputElement>('input[name="format"]').forEach((input) => {
+    input.checked = input.value === format;
+  });
+  state.lossless = false;
+  losslessInput.checked = false;
+  qualityInput.disabled = false;
+  document.querySelector('.quality-group')?.classList.remove('is-disabled');
+  const isWebp = format === 'webp';
+  losslessInput.disabled = !isWebp;
+  losslessRow.classList.toggle('is-disabled', !isWebp);
+  losslessRow.querySelector('small')!.textContent = isWebp
+    ? 'Preserve every pixel; the file may be larger'
+    : 'Lossless mode is available for WebP output';
+  invalidateResults();
+}
 
 function getElement<T extends HTMLElement>(id: string): T {
   const element = document.getElementById(id);
