@@ -125,7 +125,7 @@ function generateSeoPages(): Plugin {
         <p class="legal-updated">Last updated: October 14, 2026</p>
       </article>
     </main>
-    <footer><div class="footer-inner"><div class="footer-brand"><img src="/images/logo.png" alt="Hypeberries" width="208" height="52" /><p>Free tools made for the web.</p></div><nav class="footer-links" aria-label="Footer navigation"><a href="/">Converter</a><a href="https://widgets.hypeberries.com/">Widgets</a><a href="https://github.com/hypeberries">GitHub</a></nav><p>Independent tools by Hypeberries.<br />Made for a calmer web.</p></div></footer>
+    <footer><div class="footer-inner"><div class="footer-brand"><img src="/images/logo.png" alt="Hypeberries" width="208" height="52" /><p>Free tools made for the web.</p></div><nav class="footer-links" aria-label="Footer navigation"><a href="/">Converter</a><a href="https://widgets.hypeberries.com/">MacOS Widgets</a><a href="https://github.com/hypeberries">GitHub</a></nav><p>Independent tools by Hypeberries.<br />Made for a calmer web.</p></div></footer>
   </body>
 </html>`;
       const privacyPath = resolve(outputRoot, 'privacy', 'index.html');

@@ -308,7 +308,7 @@ app.innerHTML = `
         <a href="#how-it-works">How it works</a>
         <a href="#guide">Format guide</a>
         <a href="/privacy/">Privacy</a>
-        <a href="https://widgets.hypeberries.com/">Widgets</a>
+        <a href="https://widgets.hypeberries.com/">MacOS Widgets</a>
         <a href="https://github.com/hypeberries" target="_blank" rel="noreferrer">GitHub</a>
       </nav>
       <p>Independent tools by Hypeberries.<br>Made for a calmer web.</p>
