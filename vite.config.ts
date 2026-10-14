@@ -107,7 +107,7 @@ function generateSeoPages(): Plugin {
     <meta name="robots" content="index, follow" />
     <meta name="theme-color" content="#f8f5f1" />
     <link rel="canonical" href="https://convert.hypeberries.com/privacy/" />
-    <link rel="icon" href="/favicon.png" type="image/png" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/favicon.png" />
     <link rel="stylesheet" crossorigin href="${cssHref}" />
     <title>Privacy · Hypeberries Image Converter</title>
@@ -126,12 +126,132 @@ function generateSeoPages(): Plugin {
         <p class="legal-updated">Last updated: October 14, 2026</p>
       </article>
     </main>
-    <footer><div class="footer-inner"><div class="footer-brand"><img src="/images/logo.png" alt="Hypeberries" width="208" height="52" /><p>Free tools made for the web.</p></div><nav class="footer-links" aria-label="Footer navigation"><a href="/">Converter</a><a href="https://widgets.hypeberries.com/">MacOS Widgets</a><a href="https://github.com/hypeberries">GitHub</a></nav><p>Independent tools by Hypeberries.<br />Made for a calmer web.</p></div></footer>
+    <footer><div class="footer-inner"><div class="footer-brand"><img src="/images/logo.png" alt="Hypeberries" width="208" height="52" /><p>Free tools made for the web.</p></div><nav class="footer-links" aria-label="Footer navigation"><a href="/">Converter</a><a href="/wordpress-image-optimization/">WordPress plugin</a><a href="https://widgets.hypeberries.com/">MacOS Widgets</a><a href="https://github.com/hypeberries">GitHub</a></nav><p>Independent tools by Hypeberries.<br />Made for a calmer web.</p></div></footer>
   </body>
 </html>`;
       const privacyPath = resolve(outputRoot, 'privacy', 'index.html');
       mkdirSync(dirname(privacyPath), { recursive: true });
       writeFileSync(privacyPath, privacyHtml);
+
+      const pluginHtml = `<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Automatically convert new WordPress JPEG and PNG uploads to WebP or AVIF on your own server. No API, account, quota, tracking, or cloud processing." />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#f8f5f1" />
+    <link rel="canonical" href="https://convert.hypeberries.com/wordpress-image-optimization/" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/favicon.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Hypeberries" />
+    <meta property="og:title" content="WordPress WebP &amp; AVIF Image Optimization Plugin · hpb" />
+    <meta property="og:description" content="Convert new WordPress image uploads to WebP or AVIF locally, with no account, API, quota, or cloud service." />
+    <meta property="og:url" content="https://convert.hypeberries.com/wordpress-image-optimization/" />
+    <meta property="og:image" content="https://convert.hypeberries.com/images/logo.png" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="WordPress WebP &amp; AVIF Image Optimization Plugin · hpb" />
+    <meta name="twitter:description" content="Convert new WordPress image uploads to WebP or AVIF locally, with no account, API, quota, or cloud service." />
+    <link rel="stylesheet" crossorigin href="${cssHref}" />
+    <title>WordPress WebP &amp; AVIF Image Optimization Plugin · hpb</title>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "hpb Image Optimization",
+        "description": "A free WordPress plugin that converts new JPEG and PNG uploads to WebP or AVIF on the website's own server.",
+        "url": "https://convert.hypeberries.com/wordpress-image-optimization/",
+        "codeRepository": "https://github.com/hypeberries/image-optimization",
+        "applicationCategory": "MultimediaApplication",
+        "operatingSystem": "WordPress",
+        "isAccessibleForFree": true,
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }
+      }
+    </script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="/" aria-label="Hypeberries Image Converter home"><img src="/images/logo.png" alt="Hypeberries" width="208" height="52" /></a>
+        <nav aria-label="Page navigation"><a href="/">Image converter</a><a href="#how-it-works">How it works</a><a href="#requirements">Requirements</a><a href="#questions">Questions</a></nav>
+      </div>
+    </header>
+
+    <main class="plugin-main">
+      <section class="plugin-hero" aria-labelledby="plugin-title">
+        <div class="plugin-hero-copy">
+          <h1 id="plugin-title">Convert WordPress uploads to WebP or AVIF automatically.</h1>
+          <p>hpb Image Optimization creates lighter versions of new JPEG and PNG uploads on your own server. Your originals stay available, and your images never pass through an outside service.</p>
+        </div>
+        <div class="plugin-hero-side">
+          <span class="plugin-status">WordPress.org submission pending</span>
+          <p>The plugin is free and open source. The official WordPress.org installation link will appear here after directory approval.</p>
+          <div class="plugin-actions">
+            <a class="plugin-primary" href="https://github.com/hypeberries/image-optimization" target="_blank" rel="noreferrer">View source on GitHub</a>
+            <a class="plugin-secondary" href="/">Use the browser converter</a>
+          </div>
+        </div>
+      </section>
+
+      <section id="how-it-works" class="plugin-section" aria-labelledby="plugin-how-title">
+        <div class="plugin-section-intro"><h2 id="plugin-how-title">Set it once. Keep uploading normally.</h2><p>The plugin fits into the Media Library workflow you already use. There is no separate dashboard, credit system, or remote processing queue.</p></div>
+        <ol class="plugin-list">
+          <li><span>01</span><div><strong>Choose WebP or AVIF</strong><p>Select an output format and a quality from 80 to 100 in the WordPress settings screen.</p></div></li>
+          <li><span>02</span><div><strong>Upload JPEG or PNG images</strong><p>WordPress creates the full-size attachment and its registered image sizes as usual.</p></div></li>
+          <li><span>03</span><div><strong>Use the optimized files</strong><p>The converted attachment is used in the Media Library and on the front end while the original source files are retained.</p></div></li>
+        </ol>
+      </section>
+
+      <section class="plugin-facts" aria-label="Plugin features">
+        <article><h2>Local processing</h2><p>Conversions run through the image editor installed on your WordPress server. No files are sent to Hypeberries.</p></article>
+        <article><h2>Safe fallback</h2><p>If conversion fails, the original upload remains intact and WordPress can continue using it normally.</p></article>
+        <article><h2>No account or quota</h2><p>There is no cloud API, monthly allowance, tracking, or paid upgrade required to process images.</p></article>
+      </section>
+
+      <section id="requirements" class="plugin-section" aria-labelledby="requirements-title">
+        <div class="plugin-section-intro"><h2 id="requirements-title">Your server decides which formats are available.</h2><p>The settings screen performs a real test encode before it offers WebP or AVIF.</p></div>
+        <div class="plugin-copy">
+          <p>WordPress uses Imagick or GD to create image files. WebP is supported on many current hosting plans. AVIF requires newer image libraries and is not available on every server.</p>
+          <p>If a format is unavailable, the plugin keeps that option disabled and explains how to ask your host about support. It never selects a format your server cannot successfully create.</p>
+        </div>
+      </section>
+
+      <section class="plugin-section" aria-labelledby="formats-title">
+        <div class="plugin-section-intro"><h2 id="formats-title">WebP for broad support. AVIF for smaller files.</h2><p>Both formats can reduce image transfer sizes, but they make different tradeoffs.</p></div>
+        <div class="plugin-copy">
+          <p><strong>WebP</strong> is the dependable default. It is fast to create, widely supported, and a good fit for everyday photographs, screenshots, and transparent PNG images.</p>
+          <p><strong>AVIF</strong> can produce smaller photographic files, although it usually takes longer to encode and needs explicit support from the server's image library.</p>
+        </div>
+      </section>
+
+      <section class="plugin-section" aria-labelledby="privacy-title">
+        <div class="plugin-section-intro"><h2 id="privacy-title">Private by construction.</h2><p>The plugin has no external conversion service to contact.</p></div>
+        <div class="plugin-copy">
+          <p>Images are processed inside your own WordPress installation. The plugin does not create an account, send media to Hypeberries, add analytics, or depend on an external API.</p>
+          <p>The source code is available in the <a href="https://github.com/hypeberries/image-optimization" target="_blank" rel="noreferrer">public GitHub repository</a>.</p>
+        </div>
+      </section>
+
+      <section id="questions" class="plugin-faq" aria-labelledby="plugin-faq-title">
+        <div class="plugin-section-intro"><h2 id="plugin-faq-title">Common questions</h2><p>What the first release changes—and what it deliberately leaves alone.</p></div>
+        <div class="faq-list">
+          <details><summary>Does it convert images already in my Media Library?</summary><p>Not in the first release. It converts new JPEG and PNG uploads after the plugin is activated.</p></details>
+          <details><summary>What happens when I upload WebP or AVIF?</summary><p>Nothing extra. Existing WebP and AVIF files, as well as GIF, SVG, and HEIC files, are left unchanged.</p></details>
+          <details><summary>Does it keep my original files?</summary><p>Yes. The plugin retains the original JPEG or PNG source files while WordPress uses the converted attachment.</p></details>
+          <details><summary>What happens if conversion fails?</summary><p>The original upload remains available. Incomplete converted files are cleaned up, and the attachment can fall back to the source format.</p></details>
+          <details><summary>Does deleting the plugin delete images?</summary><p>No. Deactivating or uninstalling the plugin removes its settings but does not delete Media Library attachments or generated image files.</p></details>
+          <details><summary>Is it free?</summary><p>Yes. There is no subscription, conversion quota, remote API, or account requirement.</p></details>
+        </div>
+      </section>
+    </main>
+
+    <footer><div class="footer-inner"><div class="footer-brand"><img src="/images/logo.png" alt="Hypeberries" width="208" height="52" /><p>Free tools made for the web.</p></div><nav class="footer-links" aria-label="Footer navigation"><a href="/">Converter</a><a href="/wordpress-image-optimization/">WordPress plugin</a><a href="/privacy/">Privacy</a><a href="https://widgets.hypeberries.com/">MacOS Widgets</a><a href="https://github.com/hypeberries">GitHub</a></nav><p>Independent tools by Hypeberries.<br />Made for a calmer web.</p></div></footer>
+  </body>
+</html>`;
+      const pluginPath = resolve(outputRoot, 'wordpress-image-optimization', 'index.html');
+      mkdirSync(dirname(pluginPath), { recursive: true });
+      writeFileSync(pluginPath, pluginHtml);
     },
   };
 }

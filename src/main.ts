@@ -81,6 +81,7 @@ app.innerHTML = `
       <nav aria-label="Page navigation">
         <a href="#how-it-works">How it works</a>
         <a href="#guide">Format guide</a>
+        <a href="/wordpress-image-optimization/">WordPress plugin</a>
         <a href="#privacy">Privacy</a>
       </nav>
     </div>
@@ -249,6 +250,17 @@ app.innerHTML = `
       <article><h3>Useful controls</h3><p>Balance quality and file size, resize proportionally, or use lossless WebP for pixel-perfect output.</p></article>
     </section>
 
+    <aside class="wordpress-promo" aria-labelledby="wordpress-promo-title">
+      <div>
+        <span>For WordPress</span>
+        <h2 id="wordpress-promo-title">Convert new uploads automatically.</h2>
+      </div>
+      <div>
+        <p>hpb Image Optimization creates WebP or AVIF versions on your own server—without an API, account, quota, or cloud processing.</p>
+        <a href="/wordpress-image-optimization/">Explore the WordPress plugin <span aria-hidden="true">→</span></a>
+      </div>
+    </aside>
+
     <section id="guide" class="guide" aria-labelledby="guide-title">
       <div class="guide-intro">
         <h2 id="guide-title">Which format should you choose?</h2>
@@ -307,6 +319,7 @@ app.innerHTML = `
         <a href="/">Converter</a>
         <a href="#how-it-works">How it works</a>
         <a href="#guide">Format guide</a>
+        <a href="/wordpress-image-optimization/">WordPress plugin</a>
         <a href="/privacy/">Privacy</a>
         <a href="https://widgets.hypeberries.com/">MacOS Widgets</a>
         <a href="https://github.com/hypeberries" target="_blank" rel="noreferrer">GitHub</a>
