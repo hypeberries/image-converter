@@ -212,9 +212,16 @@ input[type="number"] { padding: 0 13px; }
 .size-change small { padding: 3px 7px; border-radius: 99px; font-size: 10px; font-weight: 700; }
 .size-change .saving { color: var(--success); background: #e4f3ec; }
 .size-change .increase { color: var(--danger); background: #fdecea; }
+.size-change .neutral { color: var(--muted); background: var(--soft); }
 .download-button { height: 40px; display: inline-flex; align-items: center; justify-content: center; gap: 7px; color: var(--accent); background: #fff; border: 1px solid rgba(123,87,255,.34); border-radius: 10px; font-size: 12px; font-weight: 700; }
 .download-button:hover { color: #fff; background: var(--accent); }
 .download-button:disabled { opacity: .5; }
+.single-result-row { grid-template-columns: 64px minmax(0, 1fr) minmax(180px, .6fr) auto; }
+.result-actions { display: flex; align-items: center; gap: 8px; }
+.result-actions .download-button { min-width: 116px; }
+.compare-button { height: 40px; padding: 0 14px; color: var(--ink); background: transparent; border: 1px solid rgba(23,19,31,.16); border-radius: 10px; font-size: 12px; font-weight: 700; white-space: nowrap; transition: color .18s, border-color .18s, background .18s; }
+.compare-button:hover, .compare-button[aria-expanded="true"] { color: var(--accent-dark); background: var(--accent-soft); border-color: rgba(123,87,255,.3); }
+.comparison-disclosure { margin-top: 12px; padding: 20px; background: var(--paper-warm); border: 1px solid var(--line); border-radius: 13px; }
 .single-comparison { padding: 5px 0 2px; }
 .comparison-intro { display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; margin-bottom: 18px; }
 .comparison-intro h3 { margin: 0; font-size: 16px; letter-spacing: -.015em; }
@@ -235,8 +242,6 @@ input[type="number"] { padding: 0 13px; }
 .comparison-details div { min-width: 0; }
 .comparison-details dt { color: var(--muted); font-size: 10px; }
 .comparison-details dd { margin: 4px 0 0; overflow: hidden; color: var(--ink); font-size: 12px; font-weight: 700; text-overflow: ellipsis; white-space: nowrap; }
-.comparison-download { width: calc(100% - 32px); min-height: 44px; margin: 0 16px 16px; color: #fff; background: var(--accent); border-color: var(--accent); }
-.comparison-download:hover { background: var(--accent-dark); }
 
 .how-it-works { display: grid; grid-template-columns: minmax(0, .85fr) minmax(520px, 1.15fr); gap: 80px; margin-top: 76px; padding: 62px 0; border-top: 1px solid var(--line); }
 .section-intro h2, .conversion-context h2, .faq h2 { max-width: 520px; margin: 0; font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Palatino, "Times New Roman", serif; font-size: clamp(32px, 3.2vw, 44px); line-height: 1.04; letter-spacing: -.04em; font-weight: 400; }
@@ -354,6 +359,9 @@ footer { padding: 32px 0 42px; color: var(--muted); background: rgba(255,255,255
   .result-card img { width: 58px; height: 58px; }
   .size-change { grid-column: 2; }
   .download-button { grid-column: 3; grid-row: 1 / span 2; }
+  .single-result-row { grid-template-columns: 58px minmax(0, 1fr); }
+  .single-result-row .result-actions { grid-column: 1 / -1; }
+  .single-result-row .download-button { grid-column: auto; grid-row: auto; }
   .how-it-works, .conversion-context, .guide, .privacy-note, .faq, .wordpress-promo, .plugin-hero, .plugin-section, .plugin-faq { grid-template-columns: 1fr; gap: 34px; }
   .benefits, .plugin-facts { grid-template-columns: 1fr; }
   .footer-inner { grid-template-columns: 1fr; }
@@ -382,6 +390,9 @@ footer { padding: 32px 0 42px; color: var(--muted); background: rgba(255,255,255
   .result-card img { width: 52px; height: 52px; }
   .size-change { grid-column: 2; }
   .download-button { grid-column: 1 / -1; grid-row: auto; }
+  .result-actions { align-items: stretch; flex-direction: column; }
+  .result-actions .compare-button, .result-actions .download-button { width: 100%; min-height: 44px; }
+  .comparison-disclosure { padding: 14px; }
   .comparison-intro { align-items: flex-start; flex-direction: column; gap: 12px; }
   .comparison-grid { grid-template-columns: 1fr; }
   .comparison-image { aspect-ratio: 16 / 11; }

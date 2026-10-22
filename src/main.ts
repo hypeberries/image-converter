@@ -449,6 +449,17 @@ convertButton.addEventListener('click', convertAll);
 downloadAllButton.addEventListener('click', downloadAll);
 
 results.addEventListener('click', (event) => {
+  const compareButton = (event.target as HTMLElement).closest<HTMLButtonElement>('[data-compare]');
+  if (compareButton) {
+    const comparison = document.getElementById(compareButton.getAttribute('aria-controls') ?? '');
+    if (!comparison) return;
+    const expanded = compareButton.getAttribute('aria-expanded') === 'true';
+    compareButton.setAttribute('aria-expanded', String(!expanded));
+    comparison.hidden = expanded;
+    compareButton.textContent = expanded ? 'Before & after' : 'Hide comparison';
+    return;
+  }
+
   const button = (event.target as HTMLElement).closest<HTMLButtonElement>('[data-download]');
   if (!button) return;
   const item = state.items.find((candidate) => candidate.id === button.dataset.download);
@@ -816,7 +827,7 @@ function renderResults(): void {
   downloadAllButton.hidden = state.items.length === 1 && completed.length === 1;
 
   if (state.items.length === 1 && completed.length === 1) {
-    results.innerHTML = renderSingleComparison(completed[0]);
+    results.innerHTML = renderSingleResult(completed[0]);
     return;
   }
 
@@ -838,6 +849,34 @@ function renderResults(): void {
       </article>
     `;
   }).join('');
+}
+
+function renderSingleResult(item: ImageItem & { result: ConvertedResult }): string {
+  const difference = Math.round((1 - item.result.blob.size / item.file.size) * 100);
+  const badge = sizeDifferenceLabel(difference);
+
+  return `
+    <div class="single-result">
+      <article class="result-card single-result-row">
+        <img src="${item.result.url}" alt="Converted preview of ${escapeHtml(item.file.name)}">
+        <div class="result-copy">
+          <strong title="${escapeHtml(item.result.name)}">${escapeHtml(item.result.name)}</strong>
+          <span>${item.result.width} × ${item.result.height}</span>
+        </div>
+        <div class="size-change">
+          <span>${formatBytes(item.file.size)} → <strong>${formatBytes(item.result.blob.size)}</strong></span>
+          <small class="${difference > 0 ? 'saving' : difference < 0 ? 'increase' : 'neutral'}">${badge}</small>
+        </div>
+        <div class="result-actions">
+          <button type="button" class="compare-button" data-compare aria-expanded="false" aria-controls="single-comparison">Before &amp; after</button>
+          <button type="button" class="download-button" data-download="${item.id}">Download <span class="button-icon">${renderIcon(faDownload)}</span></button>
+        </div>
+      </article>
+      <div id="single-comparison" class="comparison-disclosure" hidden>
+        ${renderSingleComparison(item)}
+      </div>
+    </div>
+  `;
 }
 
 function renderSingleComparison(item: ImageItem & { result: ConvertedResult }): string {
@@ -881,7 +920,6 @@ function renderSingleComparison(item: ImageItem & { result: ConvertedResult }): 
             <div><dt>Dimensions</dt><dd>${item.result.width} × ${item.result.height}</dd></div>
             <div><dt>Format</dt><dd>${state.format.toUpperCase()}</dd></div>
           </dl>
-          <button type="button" class="download-button comparison-download" data-download="${item.id}" ${state.converting ? 'disabled' : ''}>Download ${state.format.toUpperCase()} <span class="button-icon">${renderIcon(faDownload)}</span></button>
         </figure>
       </div>
     </article>
