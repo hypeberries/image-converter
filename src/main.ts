@@ -14,6 +14,8 @@ interface ConvertedResult {
   blob: Blob;
   url: string;
   name: string;
+  sourceWidth: number;
+  sourceHeight: number;
   width: number;
   height: number;
 }
@@ -708,7 +710,9 @@ async function convertAll(): Promise<void> {
 
 async function convertItem(item: ImageItem): Promise<ConvertedResult> {
   const bitmap = await createImageBitmap(item.file, { imageOrientation: 'from-image' });
-  const dimensions = getOutputDimensions(bitmap.width, bitmap.height);
+  const sourceWidth = bitmap.width;
+  const sourceHeight = bitmap.height;
+  const dimensions = getOutputDimensions(sourceWidth, sourceHeight);
   if (dimensions.width * dimensions.height > MAX_PIXELS) {
     bitmap.close();
     throw new Error('Output is too large. Resize it below 60 megapixels.');
@@ -735,6 +739,8 @@ async function convertItem(item: ImageItem): Promise<ConvertedResult> {
     blob,
     url: URL.createObjectURL(blob),
     name,
+    sourceWidth,
+    sourceHeight,
     width: dimensions.width,
     height: dimensions.height,
   };
@@ -807,10 +813,16 @@ function renderResults(): void {
   const saved = originalTotal > 0 ? Math.round((1 - resultTotal / originalTotal) * 100) : 0;
   resultsSummary.textContent = `${formatBytes(originalTotal)} → ${formatBytes(resultTotal)} · ${saved > 0 ? `${saved}% smaller` : 'conversion complete'}`;
   downloadAllButton.disabled = state.converting;
+  downloadAllButton.hidden = state.items.length === 1 && completed.length === 1;
+
+  if (state.items.length === 1 && completed.length === 1) {
+    results.innerHTML = renderSingleComparison(completed[0]);
+    return;
+  }
 
   results.innerHTML = completed.map((item) => {
     const difference = Math.round((1 - item.result.blob.size / item.file.size) * 100);
-    const badge = difference > 0 ? `${difference}% smaller` : `${Math.abs(difference)}% larger`;
+    const badge = sizeDifferenceLabel(difference);
     return `
       <article class="result-card">
         <img src="${item.result.url}" alt="Converted preview of ${escapeHtml(item.file.name)}">
@@ -826,6 +838,66 @@ function renderResults(): void {
       </article>
     `;
   }).join('');
+}
+
+function renderSingleComparison(item: ImageItem & { result: ConvertedResult }): string {
+  const difference = Math.round((1 - item.result.blob.size / item.file.size) * 100);
+  const differenceClass = difference > 0 ? 'saving' : difference < 0 ? 'increase' : 'neutral';
+
+  return `
+    <article class="single-comparison" aria-labelledby="comparison-title">
+      <div class="comparison-intro">
+        <div>
+          <h3 id="comparison-title">Before and after</h3>
+          <p>Compare the original with the converted image at the same display size.</p>
+        </div>
+        <span class="comparison-saving ${differenceClass}">${sizeDifferenceLabel(difference)}</span>
+      </div>
+      <div class="comparison-grid">
+        <figure class="comparison-panel">
+          <figcaption>
+            <span>Before</span>
+            <strong>Original</strong>
+          </figcaption>
+          <div class="comparison-image">
+            <img src="${item.previewUrl}" alt="Original preview of ${escapeHtml(item.file.name)}">
+          </div>
+          <dl class="comparison-details">
+            <div><dt>Size</dt><dd>${formatBytes(item.file.size)}</dd></div>
+            <div><dt>Dimensions</dt><dd>${item.result.sourceWidth} × ${item.result.sourceHeight}</dd></div>
+            <div><dt>Format</dt><dd>${sourceFormatLabel(item.file)}</dd></div>
+          </dl>
+        </figure>
+        <figure class="comparison-panel comparison-after">
+          <figcaption>
+            <span>After</span>
+            <strong>Converted</strong>
+          </figcaption>
+          <div class="comparison-image">
+            <img src="${item.result.url}" alt="Converted preview of ${escapeHtml(item.file.name)}">
+          </div>
+          <dl class="comparison-details">
+            <div><dt>Size</dt><dd>${formatBytes(item.result.blob.size)}</dd></div>
+            <div><dt>Dimensions</dt><dd>${item.result.width} × ${item.result.height}</dd></div>
+            <div><dt>Format</dt><dd>${state.format.toUpperCase()}</dd></div>
+          </dl>
+          <button type="button" class="download-button comparison-download" data-download="${item.id}" ${state.converting ? 'disabled' : ''}>Download ${state.format.toUpperCase()} <span class="button-icon">${renderIcon(faDownload)}</span></button>
+        </figure>
+      </div>
+    </article>
+  `;
+}
+
+function sizeDifferenceLabel(difference: number): string {
+  if (difference > 0) return `${difference}% smaller`;
+  if (difference < 0) return `${Math.abs(difference)}% larger`;
+  return 'Same file size';
+}
+
+function sourceFormatLabel(file: File): string {
+  const format = file.type.split('/')[1];
+  if (format === 'jpeg') return 'JPEG';
+  return format?.toUpperCase() || 'Image';
 }
 
 async function downloadAll(): Promise<void> {
