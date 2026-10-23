@@ -77,9 +77,13 @@ if (!app) throw new Error('App root not found.');
 app.innerHTML = `
   <header class="site-header">
     <div class="header-inner">
-      <a class="brand" href="/" aria-label="Hypeberries Image Converter home">
-        <img src="/images/logo.png" alt="Hypeberries" width="208" height="52">
-      </a>
+      <div class="site-identity">
+        <a class="brand" href="https://hypeberries.com/" aria-label="Hypeberries">
+          <img src="/images/logo.png" alt="" width="208" height="52">
+        </a>
+        <span class="brand-separator" aria-hidden="true">/</span>
+        <a class="product-name" href="/">Image Converter</a>
+      </div>
       <nav aria-label="Page navigation">
         <a href="#how-it-works">How it works</a>
         <a href="#guide">Format guide</a>
@@ -314,19 +318,16 @@ app.innerHTML = `
   <footer>
     <div class="footer-inner">
       <div class="footer-brand">
-        <img src="/images/logo.png" alt="Hypeberries" width="208" height="52" loading="lazy">
-        <p>Free tools made for the web.</p>
+        <img src="/images/logo.png" alt="" width="208" height="52" loading="lazy">
+        <p>Image Converter is a Hypeberries tool.<br><span>Small tools, built to be useful.</span></p>
       </div>
       <nav class="footer-links" aria-label="Footer navigation">
         <a href="/">Converter</a>
-        <a href="#how-it-works">How it works</a>
-        <a href="#guide">Format guide</a>
         <a href="/wordpress-image-optimization/">WordPress plugin</a>
         <a href="/privacy/">Privacy</a>
-        <a href="https://widgets.hypeberries.com/">MacOS Widgets</a>
-        <a href="https://github.com/hypeberries" target="_blank" rel="noreferrer">GitHub</a>
+        <a href="https://github.com/hypeberries">GitHub</a>
+        <a href="https://hypeberries.com/tools/">All Hypeberries tools</a>
       </nav>
-      <p>Independent tools by Hypeberries.<br>Made for a calmer web.</p>
     </div>
   </footer>
 
