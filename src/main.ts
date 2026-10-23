@@ -79,10 +79,12 @@ app.innerHTML = `
     <div class="header-inner">
       <div class="site-identity">
         <a class="brand" href="https://hypeberries.com/" aria-label="Hypeberries">
-          <img src="/images/logo.png" alt="" width="208" height="52">
+          <img src="/favicon.svg" alt="" width="40" height="40">
         </a>
-        <span class="brand-separator" aria-hidden="true">/</span>
-        <a class="product-name" href="/">Image Converter</a>
+        <div class="product-identity">
+          <a class="product-name" href="/" aria-label="Image Converter home">Image Converter</a>
+          <span class="product-byline">by <span>hypeberries</span></span>
+        </div>
       </div>
       <nav aria-label="Page navigation">
         <a href="#how-it-works">How it works</a>
@@ -318,8 +320,16 @@ app.innerHTML = `
   <footer>
     <div class="footer-inner">
       <div class="footer-brand">
-        <img src="/images/logo.png" alt="" width="208" height="52" loading="lazy">
-        <p>Image Converter is a Hypeberries tool.<br><span>Small tools, built to be useful.</span></p>
+        <div class="site-identity footer-identity">
+          <a class="brand" href="https://hypeberries.com/" aria-label="Hypeberries">
+            <img src="/favicon.svg" alt="" width="40" height="40" loading="lazy">
+          </a>
+          <div class="product-identity">
+            <a class="product-name" href="/" aria-label="Image Converter home">Image Converter</a>
+            <span class="product-byline">by <span>hypeberries</span></span>
+          </div>
+        </div>
+        <p><span>A Hypeberries tool.</span><span>Small tools, built to be useful.</span></p>
       </div>
       <nav class="footer-links" aria-label="Footer navigation">
         <a href="/">Converter</a>

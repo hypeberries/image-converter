@@ -113,7 +113,7 @@ function generateSeoPages(): Plugin {
     <title>Privacy · Hypeberries Image Converter</title>
   </head>
   <body>
-    <header class="site-header"><div class="header-inner"><div class="site-identity"><a class="brand" href="https://hypeberries.com/" aria-label="Hypeberries"><img src="/images/logo.png" alt="" width="208" height="52" /></a><span class="brand-separator" aria-hidden="true">/</span><a class="product-name" href="/">Image Converter</a></div><nav aria-label="Page navigation"><a href="/">Image converter</a></nav></div></header>
+    <header class="site-header"><div class="header-inner"><div class="site-identity"><a class="brand" href="https://hypeberries.com/" aria-label="Hypeberries"><img src="/favicon.svg" alt="" width="40" height="40" /></a><div class="product-identity"><a class="product-name" href="/" aria-label="Image Converter home">Image Converter</a><span class="product-byline">by <span>hypeberries</span></span></div></div><nav aria-label="Page navigation"><a href="/">Image converter</a></nav></div></header>
     <main class="legal-main">
       <section class="legal-hero"><p class="legal-back"><a href="/">← Back to the converter</a></p><h1>Privacy</h1><p>The short version: your image files stay on your device.</p></section>
       <article class="legal-content">
@@ -126,7 +126,7 @@ function generateSeoPages(): Plugin {
         <p class="legal-updated">Last updated: October 14, 2026</p>
       </article>
     </main>
-    <footer><div class="footer-inner"><div class="footer-brand"><img src="/images/logo.png" alt="" width="208" height="52" /><p>Image Converter is a Hypeberries tool.<br /><span>Small tools, built to be useful.</span></p></div><nav class="footer-links" aria-label="Footer navigation"><a href="/">Converter</a><a href="/wordpress-image-optimization/">WordPress plugin</a><a href="/privacy/">Privacy</a><a href="https://github.com/hypeberries">GitHub</a><a href="https://hypeberries.com/tools/">All Hypeberries tools</a></nav></div></footer>
+    <footer><div class="footer-inner"><div class="footer-brand"><div class="site-identity footer-identity"><a class="brand" href="https://hypeberries.com/" aria-label="Hypeberries"><img src="/favicon.svg" alt="" width="40" height="40" loading="lazy" /></a><div class="product-identity"><a class="product-name" href="/" aria-label="Image Converter home">Image Converter</a><span class="product-byline">by <span>hypeberries</span></span></div></div><p><span>A Hypeberries tool.</span><span>Small tools, built to be useful.</span></p></div><nav class="footer-links" aria-label="Footer navigation"><a href="/">Converter</a><a href="/wordpress-image-optimization/">WordPress plugin</a><a href="/privacy/">Privacy</a><a href="https://github.com/hypeberries">GitHub</a><a href="https://hypeberries.com/tools/">All Hypeberries tools</a></nav></div></footer>
   </body>
 </html>`;
       const privacyPath = resolve(outputRoot, 'privacy', 'index.html');
@@ -173,7 +173,7 @@ function generateSeoPages(): Plugin {
   <body>
     <header class="site-header">
       <div class="header-inner">
-        <div class="site-identity"><a class="brand" href="https://hypeberries.com/" aria-label="Hypeberries"><img src="/images/logo.png" alt="" width="208" height="52" /></a><span class="brand-separator" aria-hidden="true">/</span><a class="product-name" href="/">Image Converter</a></div>
+        <div class="site-identity"><a class="brand" href="https://hypeberries.com/" aria-label="Hypeberries"><img src="/favicon.svg" alt="" width="40" height="40" /></a><div class="product-identity"><a class="product-name" href="/" aria-label="Image Converter home">Image Converter</a><span class="product-byline">by <span>hypeberries</span></span></div></div>
         <nav aria-label="Page navigation"><a href="/">Image converter</a><a href="#how-it-works">How it works</a><a href="#requirements">Requirements</a><a href="#questions">Questions</a></nav>
       </div>
     </header>
@@ -251,7 +251,7 @@ function generateSeoPages(): Plugin {
       </section>
     </main>
 
-    <footer><div class="footer-inner"><div class="footer-brand"><img src="/images/logo.png" alt="" width="208" height="52" /><p>Image Converter is a Hypeberries tool.<br /><span>Small tools, built to be useful.</span></p></div><nav class="footer-links" aria-label="Footer navigation"><a href="/">Converter</a><a href="/wordpress-image-optimization/">WordPress plugin</a><a href="/privacy/">Privacy</a><a href="https://github.com/hypeberries">GitHub</a><a href="https://hypeberries.com/tools/">All Hypeberries tools</a></nav></div></footer>
+    <footer><div class="footer-inner"><div class="footer-brand"><div class="site-identity footer-identity"><a class="brand" href="https://hypeberries.com/" aria-label="Hypeberries"><img src="/favicon.svg" alt="" width="40" height="40" loading="lazy" /></a><div class="product-identity"><a class="product-name" href="/" aria-label="Image Converter home">Image Converter</a><span class="product-byline">by <span>hypeberries</span></span></div></div><p><span>A Hypeberries tool.</span><span>Small tools, built to be useful.</span></p></div><nav class="footer-links" aria-label="Footer navigation"><a href="/">Converter</a><a href="/wordpress-image-optimization/">WordPress plugin</a><a href="/privacy/">Privacy</a><a href="https://github.com/hypeberries">GitHub</a><a href="https://hypeberries.com/tools/">All Hypeberries tools</a></nav></div></footer>
   </body>
 </html>`;
       const pluginPath = resolve(outputRoot, 'wordpress-image-optimization', 'index.html');
