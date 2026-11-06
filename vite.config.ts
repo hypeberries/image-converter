@@ -63,6 +63,22 @@ const seoPages: SeoPage[] = [
   },
 ];
 
+const consentBanner = `<aside class="consent-banner" data-consent-banner aria-labelledby="consent-title" hidden>
+  <div class="consent-banner__content">
+    <p class="consent-banner__eyebrow">Your privacy</p>
+    <h2 id="consent-title">Help us improve Image Converter</h2>
+    <p>We use optional Google Analytics to understand which pages are useful. Analytics stays off unless you choose to accept it.</p>
+  </div>
+  <div class="consent-banner__actions">
+    <button class="consent-banner__button consent-banner__button--accept" type="button" data-consent-accept>Accept analytics</button>
+    <button class="consent-banner__button" type="button" data-consent-decline>Decline</button>
+    <a href="/privacy/">Privacy details</a>
+  </div>
+</aside>
+<script src="/consent.js" defer></script>`;
+
+const themeToggle = `<button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch color theme" aria-pressed="false"><span class="theme-toggle__track" aria-hidden="true"><span class="theme-toggle__thumb"></span><svg class="theme-toggle__icon theme-toggle__sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.25"/><path d="M12 2.5v2M12 19.5v2M4.6 4.6 6 6M18 18l1.4 1.4M2.5 12h2M19.5 12h2M4.6 19.4 6 18M18 6l1.4-1.4"/></svg><svg class="theme-toggle__icon theme-toggle__moon" viewBox="0 0 24 24"><path d="M19.2 15.3A7.7 7.7 0 0 1 8.7 4.8 7.8 7.8 0 1 0 19.2 15.3Z"/></svg></span></button>`;
+
 function generateSeoPages(): Plugin {
   return {
     name: 'generate-seo-pages',
@@ -111,22 +127,24 @@ function generateSeoPages(): Plugin {
     <link rel="apple-touch-icon" href="/favicon.png" />
     <link rel="stylesheet" crossorigin href="${cssHref}" />
     <title>Privacy · Hypeberries Image Converter</title>
+    <script src="/theme.js"></script>
   </head>
   <body>
-    <header class="site-header"><div class="header-inner"><div class="site-identity"><a class="brand" href="https://hypeberries.com/" aria-label="Hypeberries"><img src="/favicon.svg" alt="" width="40" height="40" /></a><div class="product-identity"><a class="product-name" href="/" aria-label="Image Converter home">Image Converter</a><span class="product-byline">by <span>hypeberries</span></span></div></div><nav aria-label="Page navigation"><a href="/">Image converter</a></nav></div></header>
+    <header class="site-header"><div class="header-inner"><div class="site-identity"><a class="brand" href="https://hypeberries.com/" aria-label="Hypeberries"><img src="/favicon.svg" alt="" width="40" height="40" /></a><div class="product-identity"><a class="product-name" href="/" aria-label="Image Converter home">Image Converter</a><span class="product-byline">by <span>hypeberries</span></span></div></div><div class="header-actions"><nav aria-label="Page navigation"><a href="/">Image converter</a></nav>${themeToggle}</div></div></header>
     <main class="legal-main">
       <section class="legal-hero"><p class="legal-back"><a href="/">← Back to the converter</a></p><h1>Privacy</h1><p>The short version: your image files stay on your device.</p></section>
       <article class="legal-content">
         <section><h2>Local image processing</h2><p>The converter decodes, resizes, and encodes images inside your browser. Image files and conversion settings are not sent to Hypeberries or to a third-party conversion service.</p></section>
         <section><h2>Metadata</h2><p>The browser applies the source image orientation and creates a new output file without copying EXIF, GPS location, comments, or other source metadata.</p></section>
         <section><h2>Hosting logs</h2><p>Like most website hosts, DreamHost may keep standard server logs when your browser requests the website files. These logs can include an IP address, browser information, timestamps, and requested URLs. They do not contain your image files or conversion settings.</p></section>
-        <section><h2>Cookies, accounts, and analytics</h2><p>This converter does not use user accounts, advertising trackers, analytics, or cookies. It does not save conversion history to local storage.</p></section>
+        <section><h2>Cookies, accounts, and analytics</h2><p>This converter does not use user accounts or advertising trackers. With your permission, Google Analytics is loaded through Google Tag Manager to help us understand general site use, such as page visits and referral sources. Analytics remains off unless you accept it. Your choice is saved in your browser's local storage and can be changed at any time with Cookie settings below.</p></section>
         <section><h2>Third-party assets</h2><p>The converter libraries, icons, and fonts are bundled with the website and served from the same domain. Converting an image does not require a request to a third-party API.</p></section>
         <section><h2>Contact</h2><p>Hypeberries is an independent project. For privacy questions or feedback, email <a href="mailto:fenda@hypeberries.com?subject=Image%20Converter%20privacy">fenda@hypeberries.com</a>.</p></section>
-        <p class="legal-updated">Last updated: October 14, 2026</p>
+        <p class="legal-updated">Last updated: November 6, 2026</p>
       </article>
     </main>
-    <footer><div class="footer-inner"><div class="footer-brand"><div class="site-identity footer-identity"><a class="brand" href="https://hypeberries.com/" aria-label="Hypeberries"><img src="/favicon.svg" alt="" width="40" height="40" loading="lazy" /></a><div class="product-identity"><a class="product-name" href="/" aria-label="Image Converter home">Image Converter</a><span class="product-byline">by <span>hypeberries</span></span></div></div><p><span>A Hypeberries tool.</span><span>Small tools, built to be useful.</span></p></div><nav class="footer-links" aria-label="Footer navigation"><a href="/">Converter</a><a href="/wordpress-image-optimization/">WordPress plugin</a><a href="/privacy/">Privacy</a><a href="https://github.com/hypeberries">GitHub</a><a href="https://hypeberries.com/tools/">All Hypeberries tools</a></nav></div></footer>
+    <footer><div class="footer-inner"><div class="footer-brand"><div class="site-identity footer-identity"><a class="brand" href="https://hypeberries.com/" aria-label="Hypeberries"><img src="/favicon.svg" alt="" width="40" height="40" loading="lazy" /></a><div class="product-identity"><a class="product-name" href="/" aria-label="Image Converter home">Image Converter</a><span class="product-byline">by <span>hypeberries</span></span></div></div><p><span>A Hypeberries tool.</span><span>Small tools, built to be useful.</span></p></div><nav class="footer-links" aria-label="Footer navigation"><a href="/">Converter</a><a href="/wordpress-image-optimization/">WordPress plugin</a><a href="/privacy/">Privacy</a><button type="button" data-open-consent>Cookie settings</button><a href="https://github.com/hypeberries">GitHub</a><a href="https://hypeberries.com/tools/">All Hypeberries tools</a></nav></div></footer>
+    ${consentBanner}
   </body>
 </html>`;
       const privacyPath = resolve(outputRoot, 'privacy', 'index.html');
@@ -155,6 +173,7 @@ function generateSeoPages(): Plugin {
     <meta name="twitter:description" content="Convert new WordPress image uploads to WebP or AVIF locally, with no account, API, quota, or cloud service." />
     <link rel="stylesheet" crossorigin href="${cssHref}" />
     <title>WordPress WebP &amp; AVIF Image Optimization Plugin · hpb</title>
+    <script src="/theme.js"></script>
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -174,7 +193,7 @@ function generateSeoPages(): Plugin {
     <header class="site-header">
       <div class="header-inner">
         <div class="site-identity"><a class="brand" href="https://hypeberries.com/" aria-label="Hypeberries"><img src="/favicon.svg" alt="" width="40" height="40" /></a><div class="product-identity"><a class="product-name" href="/" aria-label="Image Converter home">Image Converter</a><span class="product-byline">by <span>hypeberries</span></span></div></div>
-        <nav aria-label="Page navigation"><a href="/">Image converter</a><a href="#how-it-works">How it works</a><a href="#requirements">Requirements</a><a href="#questions">Questions</a></nav>
+        <div class="header-actions"><nav aria-label="Page navigation"><a href="/">Image converter</a><a href="#how-it-works">How it works</a><a href="#requirements">Requirements</a><a href="#questions">Questions</a></nav>${themeToggle}</div>
       </div>
     </header>
 
@@ -251,7 +270,8 @@ function generateSeoPages(): Plugin {
       </section>
     </main>
 
-    <footer><div class="footer-inner"><div class="footer-brand"><div class="site-identity footer-identity"><a class="brand" href="https://hypeberries.com/" aria-label="Hypeberries"><img src="/favicon.svg" alt="" width="40" height="40" loading="lazy" /></a><div class="product-identity"><a class="product-name" href="/" aria-label="Image Converter home">Image Converter</a><span class="product-byline">by <span>hypeberries</span></span></div></div><p><span>A Hypeberries tool.</span><span>Small tools, built to be useful.</span></p></div><nav class="footer-links" aria-label="Footer navigation"><a href="/">Converter</a><a href="/wordpress-image-optimization/">WordPress plugin</a><a href="/privacy/">Privacy</a><a href="https://github.com/hypeberries">GitHub</a><a href="https://hypeberries.com/tools/">All Hypeberries tools</a></nav></div></footer>
+    <footer><div class="footer-inner"><div class="footer-brand"><div class="site-identity footer-identity"><a class="brand" href="https://hypeberries.com/" aria-label="Hypeberries"><img src="/favicon.svg" alt="" width="40" height="40" loading="lazy" /></a><div class="product-identity"><a class="product-name" href="/" aria-label="Image Converter home">Image Converter</a><span class="product-byline">by <span>hypeberries</span></span></div></div><p><span>A Hypeberries tool.</span><span>Small tools, built to be useful.</span></p></div><nav class="footer-links" aria-label="Footer navigation"><a href="/">Converter</a><a href="/wordpress-image-optimization/">WordPress plugin</a><a href="/privacy/">Privacy</a><button type="button" data-open-consent>Cookie settings</button><a href="https://github.com/hypeberries">GitHub</a><a href="https://hypeberries.com/tools/">All Hypeberries tools</a></nav></div></footer>
+    ${consentBanner}
   </body>
 </html>`;
       const pluginPath = resolve(outputRoot, 'wordpress-image-optimization', 'index.html');
