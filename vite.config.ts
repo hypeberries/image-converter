@@ -75,7 +75,7 @@ const consentBanner = `<aside class="consent-banner" data-consent-banner aria-la
     <a href="/privacy/">Privacy details</a>
   </div>
 </aside>
-<script src="/consent.js" defer></script>`;
+<script src="/consent.js?v=2" defer></script>`;
 
 const themeToggle = `<button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch color theme" aria-pressed="false"><span class="theme-toggle__track" aria-hidden="true"><span class="theme-toggle__thumb"></span><svg class="theme-toggle__icon theme-toggle__sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.25"/><path d="M12 2.5v2M12 19.5v2M4.6 4.6 6 6M18 18l1.4 1.4M2.5 12h2M19.5 12h2M4.6 19.4 6 18M18 6l1.4-1.4"/></svg><svg class="theme-toggle__icon theme-toggle__moon" viewBox="0 0 24 24"><path d="M19.2 15.3A7.7 7.7 0 0 1 8.7 4.8 7.8 7.8 0 1 0 19.2 15.3Z"/></svg></span></button>`;
 
