@@ -1,5 +1,5 @@
 const consentKey = 'hypeberries-analytics-consent';
-const containerId = 'GTM-PQG78SH4';
+const measurementId = 'G-JF5Z8C5YD1';
 const banner = document.querySelector('[data-consent-banner]');
 const acceptButton = document.querySelector('[data-consent-accept]');
 const declineButton = document.querySelector('[data-consent-decline]');
@@ -8,11 +8,13 @@ function loadAnalytics() {
   if (window.hypeberriesAnalyticsLoaded) return;
   window.hypeberriesAnalyticsLoaded = true;
   window.dataLayer = window.dataLayer || [];
-  window.dataLayer.push({ 'gtm.start': Date.now(), event: 'gtm.js' });
+  window.gtag = function gtag() { window.dataLayer.push(arguments); };
+  window.gtag('js', new Date());
+  window.gtag('config', measurementId, { anonymize_ip: true });
 
   const script = document.createElement('script');
   script.async = true;
-  script.src = `https://www.googletagmanager.com/gtm.js?id=${containerId}`;
+  script.src = `https://www.googletagmanager.com/gtag/js?id=${measurementId}`;
   document.head.append(script);
 }
 
